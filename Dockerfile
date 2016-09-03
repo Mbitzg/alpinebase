@@ -13,7 +13,6 @@ ENV             LANG            $LOCALE
 ENV             LANGUAGE        $LOCALE
 ENV             LC_ALL          $LOCALE
 
-# Update basic utils for future usages, optional: [ apk upgrade --update-cache --available ]
 RUN 			mkdir -p /usr/sbin && mkdir -p /usr/local/sbin && \
 				chmod -R 0755 /usr/sbin /usr/local/sbin && \
 				chmod 0755 /entrypoint && chmod 0644 /etc/apk/repositories && \
@@ -28,7 +27,7 @@ RUN 			mkdir -p /usr/sbin && mkdir -p /usr/local/sbin && \
 # Set Default User and Wordking Dir
 USER            devops
 ENV             HOME            /home/devops
-WORKDIR         /devops
+WORKDIR         /home/devops
 
 # Define the Entry Point and/or Default Command
 ENTRYPOINT      ["/entrypoint"]

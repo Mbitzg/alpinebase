@@ -13,7 +13,7 @@ TBD
 
 ## Additions
 /:
-	entry
+	entrypoint
 
 /root/:
 	.profile
@@ -31,7 +31,7 @@ TBD
 
 * `latest` tracks the `edge` tag from [upstream](https://hub.docker.com/r/_/alpine/)
 
-_This includes the `main`, `testing`, and `community` repositories, but all packages outside `main` are masked. To import them, just use `apk-install pkgname@reponame`._
+_This includes the `main`, `testing`, and `community` repositories, but testing packages are masked. To install them, please use `apk-install pkgname@testing`._
 
 # License
 [MIT](https://tldrlegal.com/license/mit-license)
