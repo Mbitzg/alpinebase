@@ -1,7 +1,8 @@
 FROM            alpine:edge
 MAINTAINER      Howard Mei      <howardmei@mubiic.com>
 ENV             LOCALE          en_US.UTF-8
-
+# Run docker run -it --rm alpine:edge cat /etc/os-release
+LABEL           OSVER           edge@3.4.0
 
 # Add apk repository mirror list and user local bin
 COPY            entrypoint      /entrypoint
