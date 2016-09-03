@@ -1,0 +1,29 @@
+#!/bin/sh
+
+echo "Original timezone:" && date
+
+if [ -f "/etc/timezone" ]; then
+	if cat /etc/timezone | grep -iq ${@}; then
+		echo "Time zone is ${@} already, skipping the setting tasks."
+		exit 0
+	fi
+fi
+
+if [ ! -d "/usr/share/zoneinfo" ]; then
+	echo "Installing tzdata package and extracting time zone info ..."
+	apk-install tzdata
+fi
+
+if [ -e "/usr/share/zoneinfo/${@}" ]; then
+	echo "Setting new time zone to ${@} ..."
+	cp -f /usr/share/zoneinfo/${@} /etc/localtime && echo ${@} > /etc/timezone
+else
+	echo "Cannot find time zone info of ${@}, please use the correct format like Asia/Singapore"
+fi
+
+if [ -d "/usr/share/zoneinfo" ]; then
+	echo "Uninstalling tzdata package and removing time zone info ..."
+	apk-remove tzdata && rm -rf /usr/share/zoneinfo
+fi
+
+echo "New timezone:" && date
