@@ -20,14 +20,14 @@ RUN 			mkdir -p /usr/sbin && mkdir -p /usr/local/sbin && \
 				/usr/bin/apk-cleanup /usr/bin/set-timezone && \
 	            NewPackages="su-exec" && apk-install ${NewPackages} && \
 	            ln -s $(which su-exec) /usr/sbin/sux && apk-cleanup && \
-	            addgroup -S devops && adduser -S -s /bin/sh -g 'DevOps \
-	            User in Sudo Group' -G devops -D -h /home/devops devops && \
-	            cp /root/.profile /home/devops && chown -R devops:devops /home/devops
+	            mkdir -p /var/www && chmod -R 0755 /var/www && \
+	            addgroup -S www-data && adduser -S -s /bin/sh -g 'WWW Group' \
+	            -G www-data -D www-data && chown -R www-data:www-data /var/www
 				
 # Set Default User and Wordking Dir
-USER            devops
-ENV             HOME            /home/devops
-WORKDIR         /home/devops
+USER            root
+ENV             HOME            /root
+WORKDIR         /var/www
 
 # Define the Entry Point and/or Default Command
 ENTRYPOINT      ["/entrypoint"]
