@@ -19,7 +19,7 @@ RUN 			mkdir -p /usr/sbin && mkdir -p /usr/local/sbin && \
 				chmod 0755 /entrypoint && chmod 0644 /etc/apk/repositories && \
 				chmod 0755 /usr/bin/apk-install /usr/bin/apk-remove \
 				/usr/bin/apk-cleanup /usr/bin/set-timezone && \
-	            NewPackages="su-exec" && apk-install ${NewPackages} && \
+	            NewPackages="su-exec libcap" && apk-install ${NewPackages} && \
 	            ln -s $(which su-exec) /usr/sbin/sux && apk-cleanup && \
 	            mkdir -p /var/www && chmod -R 0755 /var/www && \
 	            addgroup -S www-data && adduser -S -s /bin/sh -g 'WWW Group' \
